@@ -125,5 +125,3 @@ There is no message broker in the current architecture.
 ## High-Level Component Diagram
 
 Diagram source file: [architecture-diagram.mmd](architecture-diagram.mmd)
-
-To preview in tools that support direct Mermaid files, open [architecture-diagram.mmd](architecture-diagram.mmd).
