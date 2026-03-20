@@ -1,0 +1,33 @@
+flowchart LR
+    applicant["Adult passport applicant"] --> browser["Browser"]
+    qa["Developers / QA / trainers"] --> tests["UI test pack\nNode.js + Mocha + Selenium"]
+    tests -->|WebDriver| browser
+
+    subgraph frontend["passport-frontend"]
+        fe["Express + Nunjucks\nMulti-step form controllers"]
+        session[("Express session\nMemoryStore")]
+        ff["Feature flags\nconfig.json"]
+    end
+
+    subgraph backend["passport-backend"]
+        api["Spring Boot REST API\n/api/applications\nX-API-Version"]
+        service["Application service\n+ mapper"]
+        db[("H2 in-memory DB\nPostgreSQL mode")]
+        flyway["Flyway migrations"]
+    end
+
+    browser -->|HTTP GET/POST| fe
+    fe -->|HTML responses| browser
+    fe -->|Reads/writes journey state| session
+    fe -->|Reads flags| ff
+    fe -->|Synchronous HTTP POST\n/api/applications| api
+    api --> service
+    service -->|JPA| db
+    flyway -->|Schema management| db
+
+    swagger["Swagger UI / OpenAPI"] --> api
+    h2console["H2 console"] --> db
+
+    broker["No async messaging / broker"]
+    broker -.-> fe
+    broker -.-> api
