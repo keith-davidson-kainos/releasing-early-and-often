@@ -1,0 +1,43 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /passport-backend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - java
+    commit-message:
+      prefix: deps
+      include: scope
+
+  - package-ecosystem: npm
+    directory: /passport-frontend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:15"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - frontend
+    commit-message:
+      prefix: deps
+      include: scope
+
+  - package-ecosystem: npm
+    directory: /passport-ui-tests
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:30"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - ui-tests
+    commit-message:
+      prefix: deps
+      include: scope
