@@ -16,7 +16,7 @@
   "author": "Kainos",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.3.10",
+    "chai": "^6.2.2",
     "mocha": "^10.2.0",
     "selenium-webdriver": "^4.27.0"
   }
